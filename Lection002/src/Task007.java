@@ -1,29 +1,29 @@
 public class Task007 {
 
-      public static void sort(int[] arrey) {
+      public static void piramidSort(int[] arrey) {
             // Построение кучи, перегруппируем массив
-            for (int i = arrey.length/2-1; i >= 0; i--) 
-                  piramidSort(arrey, arrey.length, i);
+            for (int i = arrey.length / 2 - 1; i >= 0; i--)
+                  hiapFy(arrey, arrey.length, i);
 
             // Один за другим извлекаем элементы из кучи
-            for (int i = arrey.length-1; i >= 0; i--) {
+            for (int i = arrey.length - 1; i >= 0; i--) {
                   // Перемещаем текущий корень в конец
                   int temp = arrey[0];
                   arrey[0] = arrey[i];
                   arrey[i] = temp;
 
-                  piramidSort(arrey, i, 0);
+                  hiapFy(arrey, i, 0);
             }
-            
+
       }
 
-      private static void piramidSort(int[] arrey, int heapSize, int rootIndex) {
+      private static void hiapFy(int[] arrey, int heapSize, int rootIndex) {
             int largest = rootIndex; // Инициализируем больший элемент как корень
             int leftChild = 2 * rootIndex + 1;
             int rightChild = 2 * rootIndex + 2;
 
             // Если левый дочерний больше корня
-            if (rightChild < heapSize && arrey[leftChild] > arrey[largest]) {
+            if (leftChild < heapSize && arrey[leftChild] > arrey[largest]) {
                   largest = leftChild;
             }
             // Если правый дочерний больше чем самый большой на данный момент
@@ -36,7 +36,7 @@ public class Task007 {
                   arrey[rootIndex] = arrey[largest];
                   arrey[largest] = temp;
 
-                  piramidSort(arrey, heapSize, rootIndex);
+                  hiapFy(arrey, heapSize, largest);
             }
 
       }
